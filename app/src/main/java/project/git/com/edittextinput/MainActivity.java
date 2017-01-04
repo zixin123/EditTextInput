@@ -9,6 +9,7 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity {
 
     private EditText edit_number;
+    private   String  phoneId="0123456789";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
