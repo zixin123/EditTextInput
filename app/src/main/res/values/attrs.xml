@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="EditTextView">
+        <attr name="Type">
+            <enum name="phone" value="1"></enum>
+            <enum name="money1" value="2"></enum>
+            <enum name="money2" value="3"></enum>
+            <enum name="name" value="4"></enum>
+
+        </attr>
+
+    </declare-styleable>
+
+</resources>
