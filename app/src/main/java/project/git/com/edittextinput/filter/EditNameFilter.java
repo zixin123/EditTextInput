@@ -13,7 +13,7 @@ public class EditNameFilter extends BaseFilter {
     private int MAX_LENGTH = 5;//默认不长度不大于5
 
     public EditNameFilter(EditText editText) {
-        super(editText, InputType.TYPE_CLASS_TEXT, "");
+        super(editText, InputType.TYPE_CLASS_TEXT);
     }
 
     /**
@@ -44,7 +44,6 @@ public class EditNameFilter extends BaseFilter {
         if ((destText + sourceText).length() > MAX_LENGTH) {
             return "";
         }
-        CharSequence c = dest.subSequence(dstart, dend) + sourceText;
-        return c;
+        return dest.subSequence(dstart, dend) + sourceText;
     }
 }

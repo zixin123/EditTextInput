@@ -7,15 +7,23 @@ import android.util.Log;
 import android.widget.EditText;
 
 /**
- * 电话过滤器
+ * 字母或者数字 组合
  */
-public class EditPhoneFilter extends BaseFilter {
+public class EditLetterOrNumberFilter extends BaseFilter {
 
-    private int MAX_LENGTH = 11;
+    private int MAX_LENGTH = 10;
 
-    public EditPhoneFilter(EditText editText) {
-        super(editText, InputType.TYPE_CLASS_NUMBER, "0123456789");
+    public EditLetterOrNumberFilter(EditText editText, int maxLength) {
+        super(editText, InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        //最有一个参数也可以直接写:0123456789qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM
+        //其实这没必要,因为在过滤器中也做了字母和数字的判断,只有一些比较特殊的字符或者比较少的字母 可以写在这里
+        MAX_LENGTH = maxLength;
     }
+
+    public EditLetterOrNumberFilter(EditText editText) {
+        this(editText, 10);
+    }
+
 
     /**
      * @param source 新输入的字符串
@@ -35,7 +43,8 @@ public class EditPhoneFilter extends BaseFilter {
         if (TextUtils.isEmpty(sourceText)) {
             return "";
         }
-        if (!FilterUtils.isInputPhoneFormat(destText + sourceText)) {
+
+        if (!FilterUtils.isOnlyLetterOrNumber(destText + sourceText)) {
             return "";
         }
         if ((destText + sourceText).length() > MAX_LENGTH) {
@@ -43,5 +52,4 @@ public class EditPhoneFilter extends BaseFilter {
         }
         return dest.subSequence(dstart, dend) + sourceText;
     }
-
 }

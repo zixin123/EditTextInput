@@ -3,6 +3,7 @@ package project.git.com.edittextinput.filter;
 import android.text.InputType;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.EditText;
 
 /**
@@ -43,7 +44,7 @@ public class EditMoneyFilter extends BaseFilter {
      * @param max        最大值
      */
     public EditMoneyFilter(EditText editText, int pointCount, double max) {
-        super(editText, InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL, "0123456789.");
+        super(editText, InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         POINTER_LENGTH = pointCount;
         MAX_VALUE = max;
     }
@@ -102,8 +103,8 @@ public class EditMoneyFilter extends BaseFilter {
         if (sumText > MAX_VALUE) {
             return dest.subSequence(dstart, dend);
         }
+        CharSequence c = dest.subSequence(dstart, dend) + sourceText;
 
-
-        return dest.subSequence(dstart, dend) + sourceText;
+        return c;
     }
 }

@@ -1,6 +1,7 @@
 package project.git.com.edittextinput.filter;
 
 import android.text.InputFilter;
+import android.text.InputType;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.method.DigitsKeyListener;
@@ -17,22 +18,26 @@ public class BaseFilter implements InputFilter {
      * @param inputType     输入类型,这个控制的默认弹出的键盘,也会起到输入内容的限制
      * @param acceptedChars 控制可输入的字符
      */
-    public BaseFilter(EditText editText, int inputType, String acceptedChars) {
-//        editText.setKeyListener(new DigitsKeyListener() {
-//            @Override
-//            public int getInputType() {
-//                return inputType;//控制输入类型和默认弹出的键盘类型
-//            }
-//
-//            @Override
-//            protected char[] getAcceptedChars() {//控制输入的内容接收的字符
-//                return TextUtils.isEmpty(acceptedChars) ? super.getAcceptedChars() : acceptedChars.toCharArray();
-//            }
-//        });
+    public BaseFilter(EditText editText, final int inputType, final String acceptedChars) {
+
         if (!TextUtils.isEmpty(acceptedChars)) {
-            editText.setKeyListener(DigitsKeyListener.getInstance());
+            editText.setKeyListener(new DigitsKeyListener() {
+
+                @Override
+                public int getInputType() {
+                    return inputType;
+                }
+
+                @Override
+                protected char[] getAcceptedChars() {
+                    return acceptedChars.toCharArray();
+                }
+            });
+        } else {
+            editText.setInputType(inputType);
         }
-        editText.setInputType(inputType);
+
+
     }
 
     public BaseFilter(EditText editText, int inputType) {
@@ -41,7 +46,7 @@ public class BaseFilter implements InputFilter {
 
     public BaseFilter(EditText editText, final String acceptedChars) {
         if (!TextUtils.isEmpty(acceptedChars)) {
-            editText.setKeyListener(DigitsKeyListener.getInstance());
+            editText.setKeyListener(DigitsKeyListener.getInstance(acceptedChars));//只是控制输入的内容,排序/格式 控制不了
         }
     }
 

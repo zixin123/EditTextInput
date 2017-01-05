@@ -50,7 +50,7 @@ public class FilterUtils {
      * @return
      */
     public static boolean isMoneyFormat(String money) {
-        String regular = "([\u4e00-\u9fa5]*)|([a-zA-Z]*)";
+        String regular ="([0-9]|\\.)*";
         return match(regular, money);
     }
 
@@ -64,4 +64,17 @@ public class FilterUtils {
         String regular = "[\u4e00-\u9fa5]*";
         return match(regular, name);
     }
+
+    /**
+     * 是否仅字母或数字组合
+     *
+     * @param name
+     * @return
+     */
+    public static boolean isOnlyLetterOrNumber(String name) {
+        String regular = "[a-zA-Z0-9]+";
+        return match(regular, name);
+    }
+
+
 }
