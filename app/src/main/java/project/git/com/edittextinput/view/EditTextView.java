@@ -8,9 +8,11 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import project.git.com.edittextinput.R;
+import project.git.com.edittextinput.filter.EditEmailFilter;
 import project.git.com.edittextinput.filter.EditLetterOrNumberFilter;
 import project.git.com.edittextinput.filter.EditMoneyFilter;
 import project.git.com.edittextinput.filter.EditNameFilter;
+import project.git.com.edittextinput.filter.EditPasswordFilter;
 import project.git.com.edittextinput.filter.EditPhoneFilter;
 import project.git.com.edittextinput.filter.FilterUtils;
 
@@ -48,6 +50,12 @@ public class EditTextView extends LinearLayout {
                     break;
                 case 5://字母和数字组合
                     FilterUtils.setFilter(view_edittext, new EditLetterOrNumberFilter(view_edittext, 20));
+                    break;
+                case 6://密码
+                    FilterUtils.setFilter(view_edittext, new EditPasswordFilter(view_edittext));
+                    break;
+                case 7://邮箱
+                    FilterUtils.setFilter(view_edittext, new EditEmailFilter(view_edittext));
                     break;
             }
         }

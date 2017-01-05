@@ -8,6 +8,8 @@
             <enum name="money2" value="3"></enum>
             <enum name="name" value="4"></enum>
             <enum name="letterOrnumber" value="5"></enum>
+            <enum name="password" value="6"></enum>
+            <enum name="email" value="7"></enum>
 
         </attr>
 

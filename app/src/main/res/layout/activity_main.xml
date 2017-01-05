@@ -15,6 +15,45 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="邮箱:"
+                    android:textSize="15sp"/>
+
+                <project.git.com.edittextinput.view.EditTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    edit:Type="email"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="密码(不超过20):"
+                    android:textSize="15sp"/>
+
+                <project.git.com.edittextinput.view.EditTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    edit:Type="password"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

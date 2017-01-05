@@ -36,7 +36,7 @@ public class EditNameFilter extends BaseFilter {
         }
 
 
-        if (!FilterUtils.isNameFormat(destText + sourceText)) {
+        if (!FilterUtils.isInputNameFormat(destText + sourceText)) {
             return "";
         } else {
 

@@ -6,23 +6,16 @@ import android.text.TextUtils;
 import android.widget.EditText;
 
 /**
- * 字母或者数字 组合
+ * Created by yang on 16/3/30.
+ * 密码过滤器,英文,数字,符号,6-20位
  */
-public class EditLetterOrNumberFilter extends BaseFilter {
+public class EditPasswordFilter extends BaseFilter {
 
-    private int MAX_LENGTH = 10;
+    private int MAX_LENGTH = 20;
 
-    public EditLetterOrNumberFilter(EditText editText, int maxLength) {
-        super(editText, InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        //最有一个参数也可以直接写:0123456789qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM
-        //其实这没必要,因为在过滤器中也做了字母和数字的判断,只有一些比较特殊的字符或者比较少的字母 可以写在这里
-        MAX_LENGTH = maxLength;
+    public EditPasswordFilter(EditText editText) {
+        super(editText, InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
     }
-
-    public EditLetterOrNumberFilter(EditText editText) {
-        this(editText, 10);
-    }
-
 
     /**
      * @param source 新输入的字符串
@@ -42,10 +35,10 @@ public class EditLetterOrNumberFilter extends BaseFilter {
         if (TextUtils.isEmpty(sourceText)) {
             return "";
         }
-
-        if (!FilterUtils.isInputOnlyLetterOrNumber(destText + sourceText)) {
+        if (!FilterUtils.isInputPassword(destText + sourceText)) {
             return "";
         }
+
         if ((destText + sourceText).length() > MAX_LENGTH) {
             return "";
         }

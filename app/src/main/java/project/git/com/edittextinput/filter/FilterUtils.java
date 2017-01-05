@@ -2,6 +2,7 @@ package project.git.com.edittextinput.filter;
 
 import android.text.InputFilter;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.EditText;
 
 import java.util.regex.Matcher;
@@ -49,9 +50,30 @@ public class FilterUtils {
      * @param money
      * @return
      */
-    public static boolean isMoneyFormat(String money) {
-        String regular ="([0-9]|\\.)*";
+    public static boolean isInputMoneyFormat(String money) {
+        String regular = "([0-9]|\\.)*$";
         return match(regular, money);
+    }
+
+    /**
+     * 判断输入时候,监听金额格式
+     *
+     * @param money
+     * @param count 小数点后省略几位
+     * @return
+     */
+    public static boolean isInputMoneyFormat(String money, int count) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("^");
+        //第一种,0开头
+        sb.append("(0(\\.\\d{0,").append(count).append("})?)").append("|");
+        //第二种非零开头
+        sb.append("([1-9]\\d*(\\.\\d{0,").append(count).append("})?)");
+        sb.append("$");
+        String regular = sb.toString();
+        boolean result = match(regular, money);
+        Log.d("FilterUtils", "money=" + money + "-->" + result + "-->" + regular);
+        return result;
     }
 
     /**
@@ -60,8 +82,8 @@ public class FilterUtils {
      * @param name
      * @return
      */
-    public static boolean isNameFormat(String name) {
-        String regular = "[\u4e00-\u9fa5]*";
+    public static boolean isInputNameFormat(String name) {
+        String regular = "[\u4e00-\u9fa5]*$";
         return match(regular, name);
     }
 
@@ -71,10 +93,19 @@ public class FilterUtils {
      * @param name
      * @return
      */
-    public static boolean isOnlyLetterOrNumber(String name) {
-        String regular = "[a-zA-Z0-9]+";
+    public static boolean isInputOnlyLetterOrNumber(String name) {
+        String regular = "[a-zA-Z0-9]+$";
         return match(regular, name);
     }
 
+    public static boolean isInputPassword(String str) {
+        String regular = "[a-zA-Z0-9!@#$%^&*()-+=~:()><,.'?\"]+$";
+        return match(regular, str);
+    }
 
+    public static boolean isInputEmail(String str) {
+        //my my@  my@qq my@qq. my@qq.com
+        String regular = "^(\\w+)|(\\w+@)|(\\w+@\\w+)|(\\w+@\\w+.)|(\\w+@\\w+.\\w+)$";
+        return match(regular, str);
+    }
 }

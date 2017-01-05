@@ -69,36 +69,17 @@ public class EditMoneyFilter extends BaseFilter {
             return "";
         }
 
-        //已经输入小数点的情况下，只能输入数字
-        if (destText.contains(POINTER)) {
-            if (!FilterUtils.isMoneyFormat(source.toString())) {
-                return "";
-            } else {
-                if (POINTER.equals(source)) {  //只能输入一个小数点
-                    return "";
-                }
-            }
-
-            //验证小数点精度，保证小数点后只能输入两位
-            int index = destText.indexOf(POINTER);
-            int length = dend - index;
-
-            if (length > POINTER_LENGTH) {
-                return dest.subSequence(dstart, dend);
-            }
-        } else {
-            //没有输入小数点的情况下，只能输入小数点和数字，但首位不能输入小数点和0
-            if (!FilterUtils.isMoneyFormat(source.toString())) {
-                return "";
-            } else {
-                if ((POINTER.equals(source) || (destText.equals(ZERO) && ZERO.equals(source))) && TextUtils.isEmpty(destText)) {
-                    return "";
-                }
-            }
+        if (!FilterUtils.isInputMoneyFormat(destText + sourceText, POINTER_LENGTH)) {
+            return "";
         }
 
-        //验证输入金额的大小
-        double sumText = Double.parseDouble(destText + sourceText);
+        double sumText;
+        if (sourceText.equals(POINTER)) {
+            sumText = Double.parseDouble(destText);
+        } else {
+            //验证输入金额的大小
+            sumText = Double.parseDouble(destText + sourceText);
+        }
 
         if (sumText > MAX_VALUE) {
             return dest.subSequence(dstart, dend);
