@@ -11,10 +11,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <Button
+                android:id="@+id/ok"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="OK"/>
+
+            <EditText
+                android:id="@+id/test_edit"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="名字(长度超过5截取):"
+                    android:textSize="15sp"/>
+
+                <project.git.com.edittextinput.view.EditTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    edit:Type="name2"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -54,6 +86,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     edit:Type="email"/>
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -150,6 +184,7 @@
                     android:textSize="15sp"/>
 
                 <project.git.com.edittextinput.view.EditTextView
+                    android:id="@+id/money_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     edit:Type="money1"/>

@@ -35,8 +35,6 @@ public class BaseFilter implements InputFilter {
         } else {
             editText.setInputType(inputType);
         }
-
-
     }
 
     public BaseFilter(EditText editText, int inputType) {
@@ -50,20 +48,19 @@ public class BaseFilter implements InputFilter {
     }
 
 
-
     /**
      * 在子类中重写这个方法,
      * 1.可以控制输入的数量,
      * 2.完善输入的内容
      * 3.通过正则控制输入的格式
      *
-     * @param source
-     * @param start
-     * @param end
-     * @param dest
-     * @param dstart
-     * @param dend
-     * @return
+     * @param source 新输入的字符串
+     * @param start  新输入的字符串起始下标，一般为0
+     * @param end    新输入的字符串终点下标，一般为source长度-1
+     * @param dest   输入之前文本框内容
+     * @param dstart 原内容起始坐标，一般为0
+     * @param dend   原内容终点坐标，一般为dest长度-1
+     * @return 输入内容
      */
     @Override
     public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {

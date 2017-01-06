@@ -7,8 +7,7 @@ import android.util.Log;
 import android.widget.EditText;
 
 /**
- * Created by yang on 16/3/30.
- * 金额,小数点后面只能输入两位小数
+ * 金额:输入的内容,最大值,小数点后位数,
  */
 public class EditMoneyFilter extends BaseFilter {
 
@@ -18,8 +17,6 @@ public class EditMoneyFilter extends BaseFilter {
     private int POINTER_LENGTH = 2;
 
     private static final String POINTER = ".";
-
-    private static final String ZERO = "0";
 
     /**
      * 默认的保留两位小数,默认最大值为Double.MAX_VALUE
@@ -50,15 +47,6 @@ public class EditMoneyFilter extends BaseFilter {
     }
 
 
-    /**
-     * @param source 新输入的字符串
-     * @param start  新输入的字符串起始下标，一般为0
-     * @param end    新输入的字符串终点下标，一般为source长度-1
-     * @param dest   输入之前文本框内容
-     * @param dstart 原内容起始坐标，一般为0
-     * @param dend   原内容终点坐标，一般为dest长度-1
-     * @return 输入内容
-     */
     @Override
     public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
         String sourceText = source.toString();
@@ -82,8 +70,8 @@ public class EditMoneyFilter extends BaseFilter {
         }
 
         if (sumText > MAX_VALUE) {
-            return dest.subSequence(dstart, dend);
+            return "";
         }
-        return dest.subSequence(dstart, dend) + sourceText;
+        return sourceText;
     }
 }

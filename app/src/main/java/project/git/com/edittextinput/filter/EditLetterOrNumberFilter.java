@@ -24,15 +24,6 @@ public class EditLetterOrNumberFilter extends BaseFilter {
     }
 
 
-    /**
-     * @param source 新输入的字符串
-     * @param start  新输入的字符串起始下标，一般为0
-     * @param end    新输入的字符串终点下标，一般为source长度-1
-     * @param dest   输入之前文本框内容
-     * @param dstart 原内容起始坐标，一般为0
-     * @param dend   原内容终点坐标，一般为dest长度-1
-     * @return 输入内容
-     */
     @Override
     public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
         String sourceText = source.toString();
@@ -43,12 +34,10 @@ public class EditLetterOrNumberFilter extends BaseFilter {
             return "";
         }
 
-        if (!FilterUtils.isInputOnlyLetterOrNumberFormat(destText + sourceText)) {
+        if (!FilterUtils.isInputOnlyLetterOrNumberFormat(destText + sourceText, MAX_LENGTH)) {
             return "";
         }
-        if ((destText + sourceText).length() > MAX_LENGTH) {
-            return "";
-        }
-        return dest.subSequence(dstart, dend) + sourceText;
+
+        return sourceText;
     }
 }

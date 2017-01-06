@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <declare-styleable name="EditTextView">
         <attr name="Type">
             <enum name="phone" value="1"></enum>
@@ -11,9 +10,8 @@
             <enum name="password" value="6"></enum>
             <enum name="email" value="7"></enum>
             <enum name="idnumber" value="8"></enum>
+            <enum name="name2" value="9"></enum>
 
         </attr>
-
     </declare-styleable>
-
 </resources>

@@ -13,6 +13,7 @@ import project.git.com.edittextinput.filter.EditIdNumberFilter;
 import project.git.com.edittextinput.filter.EditLetterOrNumberFilter;
 import project.git.com.edittextinput.filter.EditMoneyFilter;
 import project.git.com.edittextinput.filter.EditNameFilter;
+import project.git.com.edittextinput.filter.EditNameV1Filter;
 import project.git.com.edittextinput.filter.EditPasswordFilter;
 import project.git.com.edittextinput.filter.EditPhoneFilter;
 import project.git.com.edittextinput.filter.FilterUtils;
@@ -47,7 +48,7 @@ public class EditTextView extends LinearLayout {
                     FilterUtils.setFilter(view_edittext, new EditMoneyFilter(view_edittext, 3, 10000));
                     break;
                 case 4://名字
-                    FilterUtils.setFilter(view_edittext, new EditNameFilter(view_edittext));
+                    FilterUtils.setFilter(view_edittext, new EditNameFilter(view_edittext, 5));
                     break;
                 case 5://字母和数字组合
                     FilterUtils.setFilter(view_edittext, new EditLetterOrNumberFilter(view_edittext, 20));
@@ -60,6 +61,9 @@ public class EditTextView extends LinearLayout {
                     break;
                 case 8://身份证号码
                     FilterUtils.setFilter(view_edittext, new EditIdNumberFilter(view_edittext));
+                    break;
+                case 9://优化名字过滤器,超过长度进行截取
+                    FilterUtils.setFilter(view_edittext, new EditNameV1Filter(view_edittext, 5));
                     break;
             }
         }

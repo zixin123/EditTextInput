@@ -72,7 +72,6 @@ public class FilterUtils {
         sb.append("$");
         String regular = sb.toString();
         boolean result = match(regular, money);
-        Log.d("FilterUtils", "money=" + money + "-->" + result + "-->" + regular);
         return result;
     }
 
@@ -93,7 +92,6 @@ public class FilterUtils {
         sb.append("$");
         String regular = sb.toString();
         boolean result = match(regular, money);
-        Log.d("FilterUtils", "money=" + money + "-->" + result + "-->" + regular);
         return result;
     }
 
@@ -104,7 +102,19 @@ public class FilterUtils {
      * @param name
      * @return
      */
-    public static boolean isInputNameFormat(String name) {
+    public static boolean isInputNameFormat(String name, int count) {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("^").append("[\u4e00-\u9fa5]{0,").append(count).append("}").append("$");
+        String regular = stringBuffer.toString();
+        return match(regular, name);
+    }
+
+    /**
+     * 是否是纯中文
+     * @param name
+     * @return
+     */
+    public static boolean isOnlyChineseFormat(String name) {
         String regular = "^[\u4e00-\u9fa5]*$";
         return match(regular, name);
     }
@@ -115,8 +125,22 @@ public class FilterUtils {
      * @param name
      * @return
      */
-    public static boolean isInputOnlyLetterOrNumberFormat(String name) {
-        String regular = "^[a-zA-Z0-9]+$";
+    public static boolean isInputOnlyLetterOrNumberFormat(String name, int count) {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("^").append("[a-zA-Z0-9]{0,").append(count).append("}").append("$");
+        String regular = stringBuffer.toString();
+        return match(regular, name);
+    }
+
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public static boolean regularLetterOrNumber(String name, int count) {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("^").append("[a-zA-Z0-9]{").append(count).append("}").append("$");
+        String regular = stringBuffer.toString();
         return match(regular, name);
     }
 
@@ -139,7 +163,7 @@ public class FilterUtils {
      */
     public static boolean isInputEmailFormat(String str) {
         //my my@  my@qq my@qq. my@qq.com
-        String regular = "^(\\w+)|(\\w+@)|(\\w+@\\w+)|(\\w+@\\w+.)|(\\w+@\\w+.\\w+)$";
+        String regular = "^([a-zA-Z0-9_]+)|([a-zA-Z0-9_]+@)|([a-zA-Z0-9_]+@[a-zA-Z0-9_]+)|([a-zA-Z0-9_]+@[a-zA-Z0-9_]+\\.)|([a-zA-Z0-9_]+@[a-zA-Z0-9_]+\\.[a-zA-Z0-9_]+)$";
         return match(regular, str);
     }
 
@@ -151,7 +175,7 @@ public class FilterUtils {
      */
     public static boolean regularEmail(String str) {
         // my@qq.com
-        String regular = "^\\w+@\\w+.\\w+$";
+        String regular = "^[a-zA-Z0-9_]+@[a-zA-Z0-9_]+\\.[a-zA-Z0-9_]+$";
         return match(regular, str);
     }
 
