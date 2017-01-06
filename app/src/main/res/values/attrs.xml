@@ -10,6 +10,7 @@
             <enum name="letterOrnumber" value="5"></enum>
             <enum name="password" value="6"></enum>
             <enum name="email" value="7"></enum>
+            <enum name="idnumber" value="8"></enum>
 
         </attr>
 

@@ -1,7 +1,6 @@
 package project.git.com.edittextinput.filter;
 
 import android.text.InputFilter;
-import android.text.InputType;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.method.DigitsKeyListener;
@@ -50,9 +49,6 @@ public class BaseFilter implements InputFilter {
         }
     }
 
-    public BaseFilter() {
-        super();
-    }
 
 
     /**

@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 
 import project.git.com.edittextinput.R;
 import project.git.com.edittextinput.filter.EditEmailFilter;
+import project.git.com.edittextinput.filter.EditIdNumberFilter;
 import project.git.com.edittextinput.filter.EditLetterOrNumberFilter;
 import project.git.com.edittextinput.filter.EditMoneyFilter;
 import project.git.com.edittextinput.filter.EditNameFilter;
@@ -56,6 +57,9 @@ public class EditTextView extends LinearLayout {
                     break;
                 case 7://邮箱
                     FilterUtils.setFilter(view_edittext, new EditEmailFilter(view_edittext));
+                    break;
+                case 8://身份证号码
+                    FilterUtils.setFilter(view_edittext, new EditIdNumberFilter(view_edittext));
                     break;
             }
         }

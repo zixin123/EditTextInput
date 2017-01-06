@@ -43,7 +43,7 @@ public class EditLetterOrNumberFilter extends BaseFilter {
             return "";
         }
 
-        if (!FilterUtils.isInputOnlyLetterOrNumber(destText + sourceText)) {
+        if (!FilterUtils.isInputOnlyLetterOrNumberFormat(destText + sourceText)) {
             return "";
         }
         if ((destText + sourceText).length() > MAX_LENGTH) {

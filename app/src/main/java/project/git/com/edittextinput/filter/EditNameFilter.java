@@ -38,8 +38,6 @@ public class EditNameFilter extends BaseFilter {
 
         if (!FilterUtils.isInputNameFormat(destText + sourceText)) {
             return "";
-        } else {
-
         }
         if ((destText + sourceText).length() > MAX_LENGTH) {
             return "";

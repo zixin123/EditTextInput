@@ -34,7 +34,7 @@ public class EditEmailFilter extends BaseFilter {
             return "";
         }
 
-        if (!FilterUtils.isInputEmail(destText + sourceText)) {
+        if (!FilterUtils.isInputEmailFormat(destText + sourceText)) {
             return "";
         }
 

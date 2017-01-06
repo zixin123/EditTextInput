@@ -84,8 +84,6 @@ public class EditMoneyFilter extends BaseFilter {
         if (sumText > MAX_VALUE) {
             return dest.subSequence(dstart, dend);
         }
-        CharSequence c = dest.subSequence(dstart, dend) + sourceText;
-
-        return c;
+        return dest.subSequence(dstart, dend) + sourceText;
     }
 }

@@ -6,16 +6,14 @@ import android.text.TextUtils;
 import android.widget.EditText;
 
 /**
- * Created by yang on 16/3/30.
- * 密码过滤器,英文,数字,符号,6-20位
+ * 身份证号,15位和18位(最后为是数字或者字母Xx)
  */
-public class EditPasswordFilter extends BaseFilter {
+public class EditIdNumberFilter extends BaseFilter {
 
-    private int MAX_LENGTH = 20;
-
-    public EditPasswordFilter(EditText editText) {
-        super(editText, InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+    public EditIdNumberFilter(EditText editText) {
+        super(editText, InputType.TYPE_CLASS_PHONE,"0123456789Xx");
     }
+
 
     /**
      * @param source 新输入的字符串
@@ -35,13 +33,11 @@ public class EditPasswordFilter extends BaseFilter {
         if (TextUtils.isEmpty(sourceText)) {
             return "";
         }
-        if (!FilterUtils.isInputPasswordFormat(destText + sourceText)) {
+
+        if (!FilterUtils.isInputIdNumberFormat(destText + sourceText)) {
             return "";
         }
 
-        if ((destText + sourceText).length() > MAX_LENGTH) {
-            return "";
-        }
         return dest.subSequence(dstart, dend) + sourceText;
     }
 }
